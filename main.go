@@ -1,9 +1,9 @@
 package main
 
-import "./Message"
+import "./helper"
 
 func main() {
-	m := Message.NewMessage(nil)
+	m := helper.NewMessage(nil)
 
 	m.SuccessCopied("/tmp/src", "/tmp/dst")
 }
