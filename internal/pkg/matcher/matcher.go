@@ -1,4 +1,4 @@
-package helper
+package matcher
 
 import (
 	"errors"
@@ -20,15 +20,15 @@ type MatcherImpl struct {
 // NewMatcher is fabric method for MatcherImpl
 func NewMatcher(rxStrings ...string) (*MatcherImpl, error) {
 	m := new(MatcherImpl)
-
-	for _, s := range rxStrings {
+	m.rx = make([]*regexp.Regexp, len(rxStrings))
+	for i, s := range rxStrings {
 		r, err := regexp.Compile(s)
 
 		if err != nil {
 			return nil, err
 		}
 
-		m.rx = append(m.rx, r)
+		m.rx[i] = r
 	}
 
 	return m, nil
